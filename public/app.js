@@ -27,6 +27,7 @@ $(document).on("click", ".noteDelete", function() {
     url: "/notes/" + $(this).attr("data-id"),
   }).then(response => {
     console.log(response);
+    //this reloads the notes for the current article after one is deleted.
     loadNotes($("#savenote").attr("data-id"));
   })
 })
@@ -51,7 +52,7 @@ $(document).on("click", "#savenote", function() {
     .then(function(data) {
       // Log the response
       console.log(data);
-      // Empty the notes section
+      // Reloads notes for current article after one is saved.
       loadNotes($("#savenote").attr("data-id"));
     });
 
@@ -60,6 +61,8 @@ $(document).on("click", "#savenote", function() {
   $("#bodyinput").val("");
 });
 
+
+//Pulled the note drawing out of the <p> click function so that I could reload the notes when one is deleted or saved.
 function loadNotes(articleID) {
   $("#notes").empty();
   // Save the id from the p tag
